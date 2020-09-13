@@ -1,0 +1,89 @@
+@font-face
+{
+    font-family: 'sanskritnormal';
+    src: url('../dist/LOGO font/SamarkanNormal-RXGE.woff');
+    font-display: swap;
+}
+footer
+{
+    margin-top: 2%;
+    font-family: 'Signika', sans-serif;
+    color: white;
+}
+#footer
+{
+    background-image: url("../images/footer-background.jpg");
+    background-color: rgba(0,0,0,0.5);
+    background-blend-mode: darken;
+}
+.footer-image
+{
+    max-height: 30%;
+    max-width: 30%;
+    margin-left: 38%;
+}
+#left-coloumn
+{
+    text-align: center;
+    margin-top:2%;
+}
+#company-name
+{
+    font-family: 'sanskritnormal',Fallback,'Roboto Mono', monospace;
+    color: white;
+    background-image: linear-gradient(45deg,#ec0d78,#5139d7);
+    background-size: 100%;
+    background-repeat: repeat;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+    font-family: 'sanskritnormal',Fallback,'Roboto Mono', monospace;
+    font-size: 4em;
+    font-weight: 700;
+}
+#right-coloumn
+{
+    margin-top: 2%;
+}
+#social
+{
+    font-size: 25px;
+    padding-bottom: 1%;
+    text-align: center;
+}
+#facebook
+{
+    color: #4267b2;
+}
+#twitter
+{
+    margin-left: 4%;
+    color: #1da1f2;
+}
+#instagram
+{
+    margin-left: 4%;
+    color: white;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    border-radius: 50%;
+}
+@media only screen and (max-width: 576px)
+{
+    footer
+    {
+        margin-top: 5%;
+    }
+    #left-coloumn
+    {
+        text-align: center;
+        margin-top:2%;
+    }
+    #right-coloumn
+    {
+        margin-top: 0%;
+        text-align: center;
+    }
+}

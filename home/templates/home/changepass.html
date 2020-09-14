@@ -14,9 +14,21 @@
 <div class="wp-block-buttons"><!-- wp:button {"style":{"color":{"text":"#99e1d9","background":"#24135f"}}} -->
 
         <form method="post">{% csrf_token %}
-            {{ form.as_p }}
-           <button type="button" class="btn btn-success"<input type="submit"> Send Recovary Email</button>
+            {{ form.p }}
+            <fieldset class="module aligned">
+    <div class="form-row field-email">
+        <label for="id_email"> Write Your Registerd Email Address : </label>
+        <br>
+        <input type="email" name="email" autocomplete="email" maxlength="254" required id="id_email">
+    </div>
+    <br>
+    <br>
+
+    <input type="submit" value="  Reset my password">
+  </fieldset>
+
         </form>
+        <br>
 <p ><strong>Remember your password ? want to try again ! </strong></p>
 
      <a href="{% url 'user_login' %}" type="submit" t>Let's login</a>

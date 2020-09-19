@@ -64,15 +64,15 @@
                   <a class="nav-link" href="{% url 'donate' %}">Donate</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'apply' %}">Apply</a>
+                  <a class="nav-link" href="{% url 'upload' %}">Apply</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     More...
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">BLog</a>
-                    <a class="dropdown-item" href="#">Gallery</a>
+                    <a class="dropdown-item" href="{% url 'blog' %}">BLog</a>
+                    <a class="dropdown-item" href="{% url 'gallary' %}">Gallery</a>
                   </div>
                 </li>
                 {% if user.is_authenticated %}
@@ -80,7 +80,7 @@
                   <form method="post" action="{% url 'user_logout' %}">
 
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-success">Logout</button>
+                        <button type="submit" class="btn btn-success" id="nav-button">Logout</button>
                     </form>
                 </li>
                {% else %}
@@ -100,8 +100,6 @@
           <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
           <li data-target="#carouselExampleCaptions" data-slide-to="4"></li>
           <li data-target="#carouselExampleCaptions" data-slide-to="5"></li>
-          <li data-target="#carouselExampleCaptions" data-slide-to="6"></li>
-          <li data-target="#carouselExampleCaptions" data-slide-to="7"></li>
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -122,13 +120,12 @@
             <img src="{% static 'home/dist/img/img2.jpg'%}"  class="d-block w-100 image-slide" alt="Prison" >
             <div class="carousel-caption">
               <h5>With 433,03 prisoners in the Prison</h5>
-              <p class="d-none d-sm-block">Where 95.73% are male and 4.27% are females</p>
             </div>
           </div>
           <div class="carousel-item">
             <img src="{% static 'home/dist/img/img8.jpg'%}"  class="d-block w-100 image-slide" alt="RikshawWala">
             <div class="carousel-caption">
-              <h5>Men being the sole bread earner in mjority of the families</h5>
+              <h5>Mostly, they being the sole bread earner in mjority of the families</h5>
               <p class="d-none d-sm-block">With the sole bread earner gone what happens to the families that are left behind ?</p>
             </div>
           </div>
@@ -138,32 +135,17 @@
               <h5>They are left with uncertain fututre...</h5>
               <p class="d-none d-sm-block">Society Watermarks them and alienets them. Their children left with mental trauma</p>
             </div>
-          </div>s
-          <div class="carousel-item">
-            <img src="{% static 'home/dist/img/img6.jpg'%}"  class="d-block w-100 image-slide" alt="Child labour">
-            <div class="carousel-caption">
-              <h5>Bread is the real need</h5>
-              <p class="d-none d-sm-block">The children eventually start to work as child labourers to earn their bread</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img src="{% static 'home/dist/img/img7.jpg'%}"  class="d-block w-100 image-slide" alt="image7">
-            <div class="carousel-caption">
-              <h5>Poverty deepens. The families economic balance is lost</h5>
-              <p class="d-none d-sm-block">To cater the need other family members start working in unorganised sectors. Doing petty jobs
-                to earn their day.
-              </p>
-            </div>
           </div>
           <div class="carousel-item">
             <img src="{% static 'home/dist/img/black-back.jpg'%}" class="d-block w-100 image-slide" alt="black">
             <div class="carouseltext">
                 <img src="{% static 'home/dist/img/kyan.png'%}"   loading="lazy" style="height: 20%;"id="slide-image">
                 <h1 id="st">SAKSHAM</h1>
-
             </div>
-
-
+            <div class="carousel-caption">
+              <h5>So, after realising and seeing all the misery that these families go through</h5>
+              <p>We formed this organisation <strong>SAKSHAM</strong> to aid these families and share their Pain.</p>
+            </div>
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
@@ -177,11 +159,30 @@
       </div>
       {% if user.is_authenticated %}
       <div class="username">
-      Welcome&nbsp;!<br/><b>{{ user.username }}</b>
+      Welcome&nbsp;!&nbsp;<b>{{ user.username }}</b>
       </div>
       {% else %}
       <div class="username">
         Hi There&nbsp;!<br/><span class="d-none d-md-block">Thank you for Visiting by...</span>
+      </div>
+      {% endif %}
+        {% if user.is_authenticated %}
+      <div class="container" id="donation-card" >
+        <div class="row">
+          <div class="offset-sm-3 col-sm-6 col-auto">
+            <div class="card">
+              <h3 class="card-header bg-primary text-white">Your Donations</h3>
+              <div class="card-body">
+                <dl class="row">
+                  <dt class="col-6">Amount:</dt>
+                  <dt class="col-6">user.amount</dt>
+                  <dt class="col-6">Last Transaction:</dt>
+                  <dt class="col-6">Transaction Date</dt>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       {% endif %}
       <div class="container" id="content-1" >
@@ -191,7 +192,7 @@
             <img src="{% static 'home/dist/img/Team_1.svg'%}" class="img-fluid" id="card-img-1" alt="sticker1">
             <h6 style="text-align: center; padding-top: 1%; " class="d-block d-sm-none">Who are we ?</h6>
             <p style="text-align: justify;" class="d-none" id="card-content-1">
-              We are <strong>Saksham</strong>. A non-profit organization which aims to create a
+              We are <strong>Saksham</strong>. A Legal Aid Society which aims to create a
               positive social impact by protecting and restoring Prison Rights in
               India, accomplishing necessary reforms in prison administration, and
               rehabilitating former prisoners.
@@ -224,10 +225,10 @@
             <img src="{% static 'home/dist/img/Searching.svg'%}" class="img-fluid" id="card-img-3" alt="sticker3">
             <h6 style="text-align: center; padding-top: 1%; " class="d-block d-sm-none">Our vision</h6>
             <p style="text-align: justify;" class="d-none" id="card-content-3">
-              Prisoners are generally marginalized by society and labeled as <strong>offenders</strong>. Their plight
+              Prisoners are generally marginalized by society and labeled as "offenders". Their plight
               is usually overlooked to the extent that they end up losing even the basic rights as human
-              beings. <strong>Saksham</strong>, as the name suggests, will strive to bring hope and justice to prisoners,
-              former prisoners and their families by making them <strong>self-reliant</strong> so that they become valued
+              beings. "Saksham", as the name suggests, will strive to bring hope and justice to prisoners,
+              former prisoners and their families by making them "self-reliant" so that they become valued
               members of our society. Our vision is to impact positive social change so that justice, which
               has become a distant dream, turns into reality.
               The initiative which is yet to kick-start, hopes to evolve and spread its wings in various
@@ -282,11 +283,11 @@
             </div>
             <div class="col-sm-4 col-6">
               <h2 id="phn">Contact</h2>
-              <a href="tel:1234567890"><h4>+918617882389</h4></a>
+              <a href="tel:9674020035"><h4>+91 96740 20035</h4></a>
             </div>
             <div class="col-sm-4 d-none d-sm-block">
               <h2>Address</h2>
-              <a href="#"><h4>B6, 4th Floor<br/>Coning Tower, Water Shed Area<br/>Citadel, Atlanta</h4></a>
+              <a href="#"><h4>B6, 4th Floor<br/>62, CENTRAL ROAD, ANANDALOKE, P.O. SODEPUR <br/>KOLKATA 700110</h4></a>
             </div>
         </div>
         <div class="row" id="social">

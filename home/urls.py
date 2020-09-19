@@ -17,6 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf import settings
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
@@ -24,10 +27,13 @@ urlpatterns = [
     path('login/',views.user_login,name='user_login'),
     path('signup/',views.user_signup,name='user_signup'),
     path('donate/',views.donate,name='donate'),
-    path('apply/',views.apply,name='apply'),
+    #path('apply/',views.post,name='apply'),
     #path('current/',views.current,name='current'),
     path('logout/',views.user_logout,name='user_logout'),
-
+    path('gallary/',views.gallary2,name='gallary'),
+    path('blog/',views.blog, name='blog'),
+    path('upload/',views.upload, name='upload'),
+    
 
 
 
@@ -43,4 +49,7 @@ urlpatterns = [
 
     path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='home/password_reset_confirm.html'),name='password_reset_complete'),
 
-]
+]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+
+
+# urlpatterns +=staticfiles_urlpatterns()

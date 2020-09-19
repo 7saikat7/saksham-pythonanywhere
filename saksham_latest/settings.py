@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'm3pd(gk3uw(e--kfkwo9xn^@5(stpw5w2u+^u4i%amp!zedzqr'
+SECRET_KEY = 'm3pd(gk3uw(e--kfkwo9xnDUnjshuH$Y*%#)()^@5(stpw5w2u+^u4i%amp!zedzqr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -119,6 +119,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_DIRS=(
+os.path.join(BASE_DIR,'assets'))
+
+MEDIA_URL='/Media/'
+MEDIA_ROOT=os.path.join(BASE_DIR,'Media')
 
 ####SMPT Configuration
 ##SMPT
@@ -126,6 +131,6 @@ EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST ='smtp.gmail.com'
 EMAIL_PORT=587
 EMAIL_USE_TLS=True
-EMAIL_HOST_USER='passcompany300@gmail.com'
-EMAIL_HOST_PASSWORD='zijjsycamzyrehdq'
-DEFAULT_FROM_EMAIL='SAKSHAM TEAM<noreply@sakshamfoundation.in>'
+EMAIL_HOST_USER='foundationssaksham@gmail.com'
+EMAIL_HOST_PASSWORD='yiwlojcnzhjbdggo'
+DEFAULT_FROM_EMAIL='SAKSHAM TEAM<noreply@sakshamfoundations.in>'

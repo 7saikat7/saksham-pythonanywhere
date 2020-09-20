@@ -1,4 +1,4 @@
-{% load static %}
+<!-- {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +33,7 @@
                     <a class="nav-link" href="{% url 'donate' %}">Donate</a>
                     </li>
                     <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'apply' %}">Apply<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{% url 'upload' %}">Apply<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -69,19 +69,19 @@
         <div class="card">
             <img src="{% static 'home/images/hands.png'%}" class="card-img-top img-fluid" alt="form-header">
             <div class="card-body">
-                <form>
+                <form action="upload" method="POST" enctype="multipart/form-data">{% csrf_token %}
                     <div class="form-group row">
-                        <label class="col-sm-2 col-from-label" for="name"><h5>Applicant Name</h5></label>
+                        <label class="col-sm-2 col-from-label" name='applicat_name' for="name"><h5>Applicant Name</h5></label>
                         <div class="col-sm-10">
                             <input id="name" type="text" class="form-control" placeholder="Full Name" required="true">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" for="DOB"><h5>Date of Birth</h5></label>
+                        <label class="col-sm-2 col-form-label" name='DOB' for="DOB"><h5>Date of Birth</h5></label>
                         <div class="col-sm-4">
                             <input id="DOB" type="date" class="form-control" placeholder="DOB">
                         </div>
-                        <label class="offset-sm-2 col-sm-2 col-form-label" for="Gender"><h5>Gender</h5></label>
+                        <label class="offset-sm-2 col-sm-2 col-form-label" name='gender' for="Gender"><h5>Gender</h5></label>
                         <div class="col-sm-2">
                             <select id="Gender" class="custom-select">
                                 <option selected>Choose..</option>
@@ -93,14 +93,14 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" for="phn_number" ><h5>Contact Number</h5></label>
+                        <label class="col-sm-2 col-form-label"nae='number' for="phn_number" ><h5>Contact Number</h5></label>
                         <div  class="col-sm-4">
                             <input id="phn_number" class="form-control" type="tel" aria-describedby="phone number" required="true">
                             <small id="phone" class="form-text text-muted">
                                 * We won't share this with any third party.
                             </small>
                         </div>
-                        <label class="offset-sm-1 col-sm-2 col-form-label" for="email"><h5>Email</h5></label>
+                        <label class="offset-sm-1 col-sm-2 col-form-label" name='email' for="email"><h5>Email</h5></label>
                         <div class="col-sm-3">
                             <input id="email" class="form-control" type="email">
                             <small id="phone2" class="form-text text-muted">
@@ -108,45 +108,16 @@
                             </small>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-form-label" for="image"><h5>Upload Your Photo</h5></label>
-                    </div>
-                    <div class="form-group row">
-                        <div class="input-group">
-                            <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="image" aria-describedby="inputGroupFileAddon04">
-                            <label class="custom-file-label" for="image" id="choose">Choose file</label>
-                            </div>
-                            <div class="input-group-append">
-                            <button class="btn btn-info" type="button" id="image1">Upload</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-form-label" for ="proof"><h5>Upload any Govt. ID</h5><h6>(Ex: Voter Card/ Aadhar Card/ Pan Card)</h6></label>
-                    </div>
+
+
                     <div class="form-group row">
                         <div class="input-group">
                             <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="proof" aria-describedby="inputGroupFileAddon04">
-                            <label class="custom-file-label" for="proof" id="proof-upload">Choose file</label>
-                            </div>
-                            <div class="input-group-append">
-                            <button class="btn btn-danger" type="button" id="proof1">Upload</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-form-label" for ="proof2"><h5>Upload the rear side photo of the ID</h5></label>
-                    </div>
-                    <div class="form-group row">
-                        <div class="input-group">
-                            <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="proof2" aria-describedby="inputGroupFileAddon04">
+                            <input type="file" class="custom-file-input" name="profile_picture" id="proof2" aria-describedby="inputGroupFileAddon04">
                             <label class="custom-file-label" for="proof" id="proof-upload-2">Choose file</label>
                             </div>
                             <div class="input-group-append">
-                            <button class="btn btn-warning" type="button">Upload</button>
+                            <button class="btn btn-warning" type="button" value="upload_file">Upload</button>
                             </div>
                         </div>
                     </div>
@@ -173,11 +144,11 @@
                 </div>
                 <div class="col-sm-4 col-6">
                   <h2 id="phn">Contact</h2>
-                  <a href="tel:1234567890"><h4>+918617882389</h4></a>
+                  <a href="tel:9674020035"><h4>+91 96740 20035</h4></a>
                 </div>
                 <div class="col-sm-4 d-none d-sm-block">
                   <h2>Address</h2>
-                  <a href="#"><h4>B6, 4th Floor<br/>Coning Tower, Water Shed Area<br/>Citadel, Atlanta</h4></a>
+                  <a href="#"><h4>B6, 4th Floor<br/>62, CENTRAL ROAD, ANANDALOKE, P.O. SODEPUR <br/>KOLKATA 700110</h4></a>
                 </div>
             </div>
             <div class="row" id="social">
@@ -194,4 +165,14 @@
     <script src="{% static 'home/Depd/bootstrap.min.js'%}"></script>
     <script src="{% static 'home/scripts/apply.js'%}"></script>
 </body>
-</html>
+</html> -->
+
+<form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+  <br>
+  apply page
+  {{ you_can }}
+  {{ form.as_p }}
+<br>
+<input type="submit">
+<br>
+</form>

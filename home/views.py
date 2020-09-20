@@ -3,22 +3,67 @@ from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.models import auth,User
 from django.contrib.auth.decorators import login_required
-
+from .models import gallary , Upload
+from django.forms import modelformset_factory
+from . forms import ApplyForm
+#from . models import  PostForm , ImageForm
+from django.contrib import messages
+from django.conf import settings
+from django.conf.urls.static import static
 
 # Create your views here.
 def home(request):
     return render(request,'home/index.html')
 
+def gallary2(request):
+    G = gallary.objects.all()
+    return render (request,'home/gallary.html',{'object':G})
+
+
 @login_required(login_url='/login/')
 def donate(request):
     return render(request,'home/donate.html')
+
+
 #def current(request):
     #return render(request,'home/current.html')
+def blog(request):
+    return render(request,'home/blog.html')
 
-#APPLYING FORCE LOGIN
+#APPLYING FORCE LOGIN with upload
 @login_required(login_url='/login/')
-def apply(request):
-    return render(request,'home/apply.html')
+def upload(request):
+    print(" handeling uploads .............")
+    #customer =request.user
+    #form=ApplyForm(instance=customer)
+
+    if request.method == 'POST':
+            form=ApplyForm(request.POST,request.FILES)
+            print(" handeling uploads2222222 .............")
+        #if form.is_valid():
+            pro=form.save(commit=False)
+            pro.user=request.user
+            pro.save()
+
+            return redirect('home')
+    else:
+           return render(request,'home/apply.html',{'form':ApplyForm()})
+
+
+
+
+
+
+
+    # else:
+    #     return render(request,'home/apply.html')
+
+
+
+
+
+
+
 
 def user_logout(request):
       if request.method == 'POST':
@@ -38,9 +83,12 @@ def user_login(request):
           return redirect('home')
 
         else:
-            return render(request,'home/joinus.html',{'hi': 'invalid username or password'})
+
+          return redirect('user_login',{'hi': 'invalid username or password'})
+
     else:
         return render(request,'home/joinus.html')
+
 def user_signup(request):
 
         if request.method == 'GET':
@@ -50,14 +98,15 @@ def user_signup(request):
             username = request.POST['username']
             email = request.POST['email']
             password = request.POST['password']
-            #last_name = request.POST['re_type_password']
-            # if password == last_name:
-            try:
+            last_name = request.POST['re_type_password']
+            if password == last_name:
+
+             try:
                     user = User.objects.create_user(username=username, email=email, password=password)
                     user.save()
 
                     return redirect('user_login')
-            except IntegrityError:
+             except IntegrityError:
                     return render(request,'home/signup.html',
                                   {'error': 'username has used previously please try with another one'})
 

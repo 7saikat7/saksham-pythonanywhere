@@ -41,7 +41,7 @@
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="#">BLog</a>
-                    <a class="dropdown-item" href="#">Gallery</a>
+                    <a class="dropdown-item" href="{% url 'gallary' %}">Gallery</a>
                   </div>
                 </li>
                 {% if user.is_authenticated %}
@@ -109,39 +109,39 @@
         </div>
     </div>
     <footer>
-      <div class="container-fluid" id="footer">
-          <div  class="row">
-              <div class="col-12" id="left-coloumn">
-                  <img src="{% static 'home/dist/img/kyan.png'%}" class="footer-image d-block d-sm-none">
-                  <span id="company-name">Saksham Foundation</span>
-              </div>
-          </div>
-          <div class="row"id="right-coloumn">
-              <div class="col-sm-4 col-6">
-                <h2 id="email">Email</h2>
-                <a href="mailto:xyz@mail.com"><h4>xyz@mail.com</h4></a>
-              </div>
-              <div class="col-sm-4 col-6">
-                <h2 id="phn">Contact</h2>
-                <a href="tel:1234567890"><h4>+918617882389</h4></a>
-              </div>
-              <div class="col-sm-4 d-none d-sm-block">
-                <h2>Address</h2>
-                <a href="#"><h4>B6, 4th Floor<br/>Coning Tower, Water Shed Area<br/>Citadel, Atlanta</h4></a>
-              </div>
-          </div>
-          <div class="row" id="social">
-              <div class="col-12">
-                 <a  href="#"><span class="fa fa-facebook fa-lg" id="facebook"></span></a>
-                  <a  href="#"><span class="fa fa-twitter fa-lg" id="twitter"></span></a>
-                  <a  href="#"><span class="fa fa-instagram fa-lg" id="instagram"></span></a>
-              </div>
-          </div>
-      </div>
-      </footer>
+    <div class="container-fluid" id="footer">
+        <div  class="row">
+            <div class="col-12" id="left-coloumn">
+                <img src="{% static 'home/dist/img/kyan.png'%}" class="footer-image d-block d-sm-none">
+                <span id="company-name">Saksham Foundation</span>
+            </div>
+        </div>
+        <div class="row"id="right-coloumn">
+            <div class="col-sm-4 col-6">
+              <h2 id="email">Email</h2>
+              <a href="mailto:xyz@mail.com"><h4>xyz@mail.com</h4></a>
+            </div>
+            <div class="col-sm-4 col-6">
+              <h2 id="phn">Contact</h2>
+              <a href="tel:9674020035"><h4>+91 96740 20035</h4></a>
+            </div>
+            <div class="col-sm-4 d-none d-sm-block">
+              <h2>Address</h2>
+              <a href="#"><h4>B6, 4th Floor<br/>62, CENTRAL ROAD, ANANDALOKE, P.O. SODEPUR <br/>KOLKATA 700110</h4></a>
+            </div>
+        </div>
+        <div class="row" id="social">
+            <div class="col-12">
+               <a  href="#"><span class="fa fa-facebook fa-lg" id="facebook"></span></a>
+                <a  href="#"><span class="fa fa-twitter fa-lg" id="twitter"></span></a>
+                <a  href="#"><span class="fa fa-instagram fa-lg" id="instagram"></span></a>
+            </div>
+        </div>
+    </div>
+    </footer>
     <script src="{% static 'home/Depd/jquery.slim.min.js'%}"> </script>
     <script src="{% static 'home/Depd/popper.min.js'%}"></script>
     <script src="{% static 'home/Depd/bootstrap.min.js'%}"></script>
-    <script src="{% static 'home/scripts/apply.js'%}"></script>
+    <script src="{% static 'home/scripts/index.js'%}"></script>
 </body>
 </html>
